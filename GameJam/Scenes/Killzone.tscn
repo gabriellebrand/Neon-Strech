@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Killzone.gd" id="1_kupyv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_phvc6"]
+size = Vector3(1, 1, 0.01)
 
 [node name="Killzone" type="Area3D"]
 collision_layer = 0

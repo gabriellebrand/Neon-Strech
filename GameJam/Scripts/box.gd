@@ -2,7 +2,7 @@ extends Area3D
 
 const STRETCH_SPEED = 0.1
 const MINIMUM_STRETCH_Y = 0.2
-const MAXIMUM_STRETCH_Y = 5.0
+const MAXIMUM_STRETCH_Y = 3.5
 
 func _physics_process(delta: float) -> void:
     var stretch_y_value = Input.get_axis("stretch_down", "stretch_up")
