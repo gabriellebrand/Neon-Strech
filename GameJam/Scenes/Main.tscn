@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh0amlcjjdkfe"]
+[gd_scene load_steps=3 format=3 uid="uid://dh0amlcjjdkfe"]
 
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Box.tscn" id="1_8f6yc"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_gbmw6"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_gbmw6")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.390625, 0.918515, 0.0611702, -0.907456, 0.395385, -0.142104, -0.15471, 0, 0.98796, 1.41002, 3.21604, 8.14262)
+transform = Transform3D(0.913531, 0, 0.406769, -0.141309, 0.937719, 0.317355, -0.381435, -0.347394, 0.856636, 3.31565, 4.5385, 10)
 
 [node name="Box" parent="." instance=ExtResource("1_8f6yc")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
