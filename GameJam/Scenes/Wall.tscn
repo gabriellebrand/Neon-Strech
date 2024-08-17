@@ -1,26 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://5776bj6f0sd"]
+[gd_scene load_steps=6 format=3 uid="uid://5776bj6f0sd"]
 
-[ext_resource type="Script" path="res://Scenes/Wall.gd" id="1_6w0di"]
+[ext_resource type="Script" path="res://Scripts/Wall.gd" id="1_6w0di"]
 [ext_resource type="PackedScene" uid="uid://djhhqtduyphhl" path="res://Scenes/WallPartMesh.tscn" id="2_e3ogo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tme3b"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8fxhl"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ib6sj"]
+resource_local_to_scene = true
 
 [node name="Wall" type="Node3D"]
 script = ExtResource("1_6w0di")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-visible = false
-use_collision = true
-size = Vector3(100, 10, 1)
+[node name="WallPartMeshTop" parent="." instance=ExtResource("2_e3ogo")]
+mesh = SubResource("BoxMesh_tme3b")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
-visible = false
-operation = 2
-size = Vector3(5, 5, 1)
+[node name="WallPartMeshLeft" parent="." instance=ExtResource("2_e3ogo")]
+mesh = SubResource("BoxMesh_8fxhl")
 
-[node name="MeshInstance3DLeft" parent="." instance=ExtResource("2_e3ogo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-
-[node name="MeshInstance3DRight" parent="." instance=ExtResource("2_e3ogo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="MeshInstance3DTop" parent="." instance=ExtResource("2_e3ogo")]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="WallPartMeshRight" parent="." instance=ExtResource("2_e3ogo")]
+mesh = SubResource("BoxMesh_ib6sj")

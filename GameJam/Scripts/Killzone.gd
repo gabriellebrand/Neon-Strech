@@ -1,6 +1,11 @@
 extends Area3D
 
-func _on_body_entered(body):
+func die():
   print("Died!")
   get_tree().reload_current_scene()
-  #timer.start()
+
+func _on_body_entered(body):
+  die()
+
+func _on_area_entered(area):
+  die()
