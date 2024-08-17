@@ -4,10 +4,11 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ksjlf"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_p7kd6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pfat"]
+albedo_color = Color(0.988235, 0.627451, 0.231373, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1y018"]
-albedo_color = Color(0.302934, 0.710725, 0.606255, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_p7kd6"]
+material = SubResource("StandardMaterial3D_7pfat")
 
 [node name="Box" type="Area3D"]
 transform = Transform3D(1.00054, 0, 0, 0, 1.00054, 0, 0, 0, 1.00054, 0, 0, 0)
@@ -18,4 +19,3 @@ shape = SubResource("BoxShape3D_ksjlf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_p7kd6")
-surface_material_override/0 = SubResource("StandardMaterial3D_1y018")
