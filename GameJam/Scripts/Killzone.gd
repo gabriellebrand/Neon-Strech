@@ -2,7 +2,7 @@ extends Area3D
 
 func die():
     print("Died!")
-    get_tree().reload_current_scene()
+    get_tree().change_scene_to_file("res://Scenes/UI/MainMenu.tscn")
 
 func _on_body_entered(body):
     die()
