@@ -12,7 +12,6 @@ transform = Transform3D(0.913531, 0, 0.406769, -0.141309, 0.937719, 0.317355, -0
 [node name="Box" parent="." instance=ExtResource("1_8f6yc")]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
