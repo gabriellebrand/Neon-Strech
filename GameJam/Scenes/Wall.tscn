@@ -1,25 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://5776bj6f0sd"]
+[gd_scene load_steps=3 format=3 uid="uid://5776bj6f0sd"]
 
 [ext_resource type="Script" path="res://Scripts/Wall.gd" id="1_6w0di"]
 [ext_resource type="PackedScene" uid="uid://djhhqtduyphhl" path="res://Scenes/WallPartMesh.tscn" id="2_e3ogo"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_tme3b"]
-resource_local_to_scene = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_8fxhl"]
-resource_local_to_scene = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_ib6sj"]
-resource_local_to_scene = true
 
 [node name="Wall" type="Node3D"]
 script = ExtResource("1_6w0di")
 
 [node name="WallPartMeshTop" parent="." instance=ExtResource("2_e3ogo")]
-mesh = SubResource("BoxMesh_tme3b")
 
 [node name="WallPartMeshLeft" parent="." instance=ExtResource("2_e3ogo")]
-mesh = SubResource("BoxMesh_8fxhl")
 
 [node name="WallPartMeshRight" parent="." instance=ExtResource("2_e3ogo")]
-mesh = SubResource("BoxMesh_ib6sj")

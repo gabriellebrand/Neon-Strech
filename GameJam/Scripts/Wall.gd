@@ -12,7 +12,7 @@ const ww = 8.0
 
 func _ready():
     # wall starts at z=-20 and moves up to a positive z
-    position.z = -20
+    position.z = -10
 
     # hole dimensions
     var h = randf_range(0.5, 4.0)
@@ -27,15 +27,19 @@ func _ready():
 
     # top
     wall_part_mesh_top.position = Vector3(0, wh-((wh-h)/2.0), 0)
-    wall_part_mesh_top.mesh.size = Vector3(ww, wh-h, 1)
+    wall_part_mesh_top.scale = Vector3(w, wh-h, 1)
+    #wall_part_mesh_top.get_node("Killzone").scale = wall_part_mesh_top.scale
+    print(wall_part_mesh_top)
 
     # left
     wall_part_mesh_left.position = Vector3(-dx, wh/2, 0)
-    wall_part_mesh_left.mesh.size = Vector3(bx, wh, 1)
+    wall_part_mesh_left.scale = Vector3(bx, wh, 1)
+    #wall_part_mesh_left.get_node("Killzone").scale = wall_part_mesh_left.scale
 
     # left
     wall_part_mesh_right.position = Vector3(dx, wh/2, 0)
-    wall_part_mesh_right.mesh.size = Vector3(bx, wh, 1)
+    wall_part_mesh_right.scale = Vector3(bx, wh, 1)
+    #wall_part_mesh_right.get_node("Killzone").scale = wall_part_mesh_right.scale
 
 
 func _process(delta):
