@@ -1,5 +1,4 @@
-extends CharacterBody3D
-
+extends Area3D
 
 const STRETCH_SPEED = 0.1
 const MINIMUM_STRETCH_Y = 0.2

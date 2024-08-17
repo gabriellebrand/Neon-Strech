@@ -14,4 +14,7 @@ transform = Transform3D(0.913531, 0, 0.406769, -0.141309, 0.937719, 0.317355, -0
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.907044, 0.382207, -0.176604, 0, 0.419452, 0.907777, 0.421036, -0.823394, 0.380461, 0, 0, 0)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
