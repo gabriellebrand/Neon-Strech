@@ -37,7 +37,6 @@ func _ready():
     # top
     wall_part_mesh_top.position = Vector3(0, wh-((wh-h)/2.0), 0)
     wall_part_mesh_top.scale = Vector3(w, wh-h, 1)
-    print(wall_part_mesh_top)
 
     # left
     wall_part_mesh_left.position = Vector3(-dx, wh/2, 0)
