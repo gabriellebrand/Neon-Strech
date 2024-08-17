@@ -34,3 +34,7 @@ stretch_down={
 
 3d_physics/layer_1="walls"
 3d_physics/layer_8="player"
+
+[rendering]
+
+renderer/rendering_method="mobile"
