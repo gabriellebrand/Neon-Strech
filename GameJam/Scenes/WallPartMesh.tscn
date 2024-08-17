@@ -2,9 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dlb7l34jra5p7" path="res://Scenes/Killzone.tscn" id="1_xpamb"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_eyus6"]
+[sub_resource type="BoxMesh" id="BoxMesh_lagoo"]
+resource_local_to_scene = true
 
-[node name="MeshInstance3DLeft" type="MeshInstance3D"]
-mesh = SubResource("BoxMesh_eyus6")
+[node name="WallPartMesh" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_lagoo")
 
 [node name="Killzone" parent="." instance=ExtResource("1_xpamb")]
