@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://5776bj6f0sd"]
+[gd_scene load_steps=6 format=3 uid="uid://cq1uxjnn4072f"]
 
 [ext_resource type="Script" path="res://Scripts/Wall.gd" id="1_6w0di"]
-[ext_resource type="PackedScene" uid="uid://djhhqtduyphhl" path="res://Scenes/WallPartMesh.tscn" id="2_e3ogo"]
+[ext_resource type="PackedScene" path="res://Scenes/WallPartMesh.tscn" id="2_e3ogo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tme3b"]
 resource_local_to_scene = true
