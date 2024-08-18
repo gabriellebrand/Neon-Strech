@@ -29,6 +29,7 @@ func _on_current_run_time_changed(run_time):
     if (current_score > current_high_score):
         current_high_score = current_score
         has_new_high_score = true
+        entry_point.flash_new_high_score_label()
     
 func compute_score(run_time):
     var score = int(run_time) * 50

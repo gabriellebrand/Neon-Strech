@@ -40,3 +40,7 @@ func update_high_score_label(high_score):
 # called when player state is changed
 func player_state_changed(lives):
     level_ui.update_life_icons(lives)
+    
+func flash_new_high_score_label():
+    level_ui.flash_new_high_score_label()
+    
