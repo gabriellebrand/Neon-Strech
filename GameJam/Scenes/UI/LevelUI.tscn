@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi8ebkbeanle7"]
 
 [ext_resource type="Texture2D" uid="uid://0wcoe17gtq5b" path="res://Assets/cube-icon.png" id="1_0rt3w"]
-[ext_resource type="Script" path="res://Scenes/UI/level_ui.gd" id="1_6e6qi"]
+[ext_resource type="Script" path="res://Scripts/UI/level_ui.gd" id="1_6e6qi"]
 
 [node name="LevelUI" type="Control"]
 layout_mode = 3
