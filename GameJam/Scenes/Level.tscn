@@ -1,37 +1,57 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh0amlcjjdkfe"]
+[gd_scene load_steps=12 format=3 uid="uid://dh0amlcjjdkfe"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_8pt3u"]
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
 [ext_resource type="Shader" path="res://Scripts/terrain.gdshader" id="3_e7qp6"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7l23n"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyk5c"]
-noise = SubResource("FastNoiseLite_7l23n")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xp80"]
-render_priority = 0
-shader = ExtResource("3_e7qp6")
-shader_parameter/height_scale = 0.5
-shader_parameter/albedo = Color(0, 0.0156863, 1, 1)
-shader_parameter/wire_color = Color(0, 0.72549, 0.831373, 1)
-shader_parameter/wire_width = 1.0
-shader_parameter/wire_smoothness = 0.01
-shader_parameter/modelOpacity = 0.038
-shader_parameter/noise = SubResource("NoiseTexture2D_qyk5c")
+[ext_resource type="Script" path="res://Scripts/TerrainMesh.gd" id="4_qixx5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wjfew"]
-material = SubResource("ShaderMaterial_1xp80")
-size = Vector2(33, 33)
-subdivide_width = 33
-subdivide_depth = 33
+size = Vector2(99, 99)
+subdivide_width = 99
+subdivide_depth = 99
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2gwui"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ievo3"]
+noise = SubResource("FastNoiseLite_2gwui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8k1vl"]
+render_priority = 0
+shader = ExtResource("3_e7qp6")
+shader_parameter/amplitude = 5.0
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/wire_color = Color(0, 0, 1, 1)
+shader_parameter/wire_width = 1.0
+shader_parameter/wire_smoothness = 0.01
+shader_parameter/mesh_id = 0
+shader_parameter/modelOpacity = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_ievo3")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2c0qe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ga4l"]
+noise = SubResource("FastNoiseLite_2c0qe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwb2x"]
+render_priority = 0
+shader = ExtResource("3_e7qp6")
+shader_parameter/amplitude = 5.0
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/wire_color = Color(0, 0, 0.870588, 1)
+shader_parameter/wire_width = 1.0
+shader_parameter/wire_smoothness = 0.01
+shader_parameter/mesh_id = 1
+shader_parameter/modelOpacity = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_2ga4l")
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_8pt3u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.944966, 0.327169, 0, -0.327169, 0.944966, 0, 2.88977, 2.66849)
-near = 0.5
+transform = Transform3D(1, 0, 0, 0, 0.771625, 0.636078, 0, -0.636078, 0.771625, 0, 5.93, 2.668)
+fov = 87.7
+near = 0.001
+far = 73.8
 
 [node name="Player" parent="." instance=ExtResource("2_7bym5")]
 collision_layer = 128
@@ -44,7 +64,16 @@ autostart = true
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.907044, 0.382207, -0.176604, 0, 0.419452, 0.907777, 0.421036, -0.823394, 0.380461, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Terrain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
 mesh = SubResource("PlaneMesh_wjfew")
+surface_material_override/0 = SubResource("ShaderMaterial_8k1vl")
+script = ExtResource("4_qixx5")
+
+[node name="Terrain2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
+mesh = SubResource("PlaneMesh_wjfew")
+surface_material_override/0 = SubResource("ShaderMaterial_mwb2x")
+script = ExtResource("4_qixx5")
 
 [connection signal="timeout" from="WallSpawnTimer" to="." method="_on_timer_timeout"]
