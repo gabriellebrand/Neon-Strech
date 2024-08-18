@@ -22,6 +22,7 @@ func _process(delta):
 
 func reset_state():
     lives = 3
+    state_changed.emit(3)
 
 func move(direction):
     velocity.x = (direction * MOVE_SPEED) if direction else move_toward(velocity.x, 0, MOVE_SPEED)
