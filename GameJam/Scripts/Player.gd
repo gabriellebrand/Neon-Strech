@@ -42,6 +42,11 @@ func hit():
     lives -= 1
     state_changed.emit(lives)
 
+    # game over
+    if lives <= 0:
+        GameManager.end_run()
+        return
+
     # player is invincible for some time (avoid multiple collision)
     invincible = true
     await get_tree().create_timer(0.5).timeout
