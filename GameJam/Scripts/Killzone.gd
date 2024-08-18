@@ -1,7 +1,7 @@
 extends Area3D
 
 func die():
-    GameManager.reset_game()
+    GameManager.end_run()
 
 func _on_body_entered(body):
     die()

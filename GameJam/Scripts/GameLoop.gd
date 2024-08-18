@@ -1,6 +1,6 @@
 extends Node
 
-var level_scene = preload("res://Scenes/Main.tscn")
+var level_scene = preload("res://Scenes/Level.tscn")
 @onready var level
 
 @onready var main_menu: Control = $MainMenu
@@ -9,25 +9,32 @@ var level_scene = preload("res://Scenes/Main.tscn")
 func _ready() -> void:
     main_menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     reset_level()
-    reset_game()
+    end_run()
+    update_high_score_label(GameManager.current_high_score)
     pass
     
-func reset_game():
-    get_tree().paused = true
-    main_menu.show()
-    
-func start_game():
+func start_run():
     get_tree().paused = false
     reset_level()
     main_menu.hide()
+    update_score_label(0)
     level_ui.show()
+
+func end_run():    
+    get_tree().paused = true
+    main_menu.show()
     
 func reset_level():
     if (level): level.queue_free()
     level = level_scene.instantiate()
-    add_child(level)
+    level.connect("current_run_time_changed", Callable(GameManager, "_on_current_run_time_changed"))
+    add_child(level)        
+
+func update_score_label(score):
+    level_ui.update_score_label(score)
+
+func update_high_score_label(high_score):
+    main_menu.update_high_score_label(high_score)
     
-func set_score(score):
-    var score_label = level_ui.get_node("ScoreLabel")
-    score_label.text = "Score: %10d" % score
+    
     
