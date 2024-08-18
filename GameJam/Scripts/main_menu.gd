@@ -6,7 +6,6 @@ func _ready() -> void:
     set_high_score(0)
     
 func _process(delta):
-    #print(visible)
     pass
 
 func _on_play_button_pressed() -> void:

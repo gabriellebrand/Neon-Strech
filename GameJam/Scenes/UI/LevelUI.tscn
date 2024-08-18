@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bi8ebkbeanle7"]
+[gd_scene load_steps=2 format=3 uid="uid://bi8ebkbeanle7"]
+
+[ext_resource type="Texture2D" uid="uid://0wcoe17gtq5b" path="res://Assets/cube-icon.png" id="1_0rt3w"]
 
 [node name="LevelUI" type="Control"]
 layout_mode = 3
@@ -9,12 +11,59 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Lives" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="LiveIcon1" type="TextureRect" parent="Lives"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -145.0
+offset_top = 35.0
+offset_right = -116.0
+offset_bottom = 70.0
+grow_horizontal = 0
+texture = ExtResource("1_0rt3w")
+expand_mode = 1
+
+[node name="LiveIcon2" type="TextureRect" parent="Lives"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_top = 35.0
+offset_right = -73.0
+offset_bottom = 70.0
+grow_horizontal = 0
+texture = ExtResource("1_0rt3w")
+expand_mode = 1
+
+[node name="LiveIcon3" type="TextureRect" parent="Lives"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = 35.0
+offset_right = -31.0
+offset_bottom = 70.0
+grow_horizontal = 0
+texture = ExtResource("1_0rt3w")
+expand_mode = 1
+
 [node name="ScoreLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -145.0
-offset_bottom = 23.0
+offset_top = 4.0
+offset_bottom = 27.0
 grow_horizontal = 0
 text = "SCORE: 000000"
