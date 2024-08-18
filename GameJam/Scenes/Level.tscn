@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_8pt3u"]
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
 [ext_resource type="Shader" path="res://Scripts/terrain.gdshader" id="3_e7qp6"]
-[ext_resource type="Script" path="res://Scripts/TerrainMesh.gd" id="4_qixx5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wjfew"]
 size = Vector2(99, 99)
@@ -26,6 +25,26 @@ shader_parameter/wire_smoothness = 0.01
 shader_parameter/mesh_id = 0
 shader_parameter/modelOpacity = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_ievo3")
+
+[sub_resource type="GDScript" id="GDScript_nbxxa"]
+script/source = "extends MeshInstance3D
+
+#var material = mesh.surface_get_material(0)
+#var noise = NoiseTexture2D.new()
+##var noise = FastNoiseLite.new()
+#
+## Called when the node enters the scene tree for the first time.
+#func _ready():
+    #
+    #material.set_shader_parameter(\"noise\", noise)
+    #
+    #
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+    #noise.offset.y += 10
+    #material.set_shader_parameter(\"noise\", noise)
+    #
+"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2c0qe"]
 
@@ -68,12 +87,12 @@ transform = Transform3D(0.907044, 0.382207, -0.176604, 0, 0.419452, 0.907777, 0.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
 mesh = SubResource("PlaneMesh_wjfew")
 surface_material_override/0 = SubResource("ShaderMaterial_8k1vl")
-script = ExtResource("4_qixx5")
+script = SubResource("GDScript_nbxxa")
 
 [node name="Terrain2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
 mesh = SubResource("PlaneMesh_wjfew")
 surface_material_override/0 = SubResource("ShaderMaterial_mwb2x")
-script = ExtResource("4_qixx5")
+script = SubResource("GDScript_nbxxa")
 
 [connection signal="timeout" from="WallSpawnTimer" to="." method="_on_timer_timeout"]
