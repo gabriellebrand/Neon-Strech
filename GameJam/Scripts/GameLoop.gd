@@ -42,3 +42,6 @@ func update_score_label(score):
 func update_high_score_label(high_score):
     main_menu.update_high_score_label(high_score)
     
+func flash_new_high_score_label():
+    level_ui.flash_new_high_score_label()
+    

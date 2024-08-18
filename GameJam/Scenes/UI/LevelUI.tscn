@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi8ebkbeanle7"]
+[gd_scene load_steps=4 format=3 uid="uid://bi8ebkbeanle7"]
 
 [ext_resource type="Texture2D" uid="uid://0wcoe17gtq5b" path="res://Assets/cube-icon.png" id="1_0rt3w"]
-[ext_resource type="Script" path="res://Scenes/UI/level_ui.gd" id="1_6e6qi"]
+[ext_resource type="Script" path="res://Scripts/UI/level_ui.gd" id="1_6e6qi"]
+[ext_resource type="Script" path="res://Scripts/UI/new_high_score_label.gd" id="3_bbngb"]
 
 [node name="LevelUI" type="Control"]
 layout_mode = 3
@@ -18,6 +19,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_top = 22.0
+offset_bottom = 22.0
 grow_horizontal = 0
 
 [node name="LiveIcon1" type="TextureRect" parent="Lives"]
@@ -64,8 +67,30 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -145.0
-offset_top = 4.0
-offset_bottom = 27.0
+offset_left = -172.0
+offset_top = 21.0
+offset_bottom = 49.0
 grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
 text = "SCORE: 000000"
+
+[node name="NewHighScoreLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_top = 12.0
+offset_right = -17.0
+offset_bottom = 35.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.596078, 0.164706, 1)
+theme_override_font_sizes/font_size = 12
+text = "NEW HIGH SCORE!"
+script = ExtResource("3_bbngb")
+
+[node name="FlashTimer" type="Timer" parent="NewHighScoreLabel"]
+wait_time = 0.5
+
+[connection signal="timeout" from="NewHighScoreLabel/FlashTimer" to="NewHighScoreLabel" method="_on_flash_timer_timeout"]
