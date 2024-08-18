@@ -1,14 +1,20 @@
 extends CharacterBody3D
 
-@export var lives = 3
-@export var invincible = false
+# state
+var lives = 3
+var invincible = false
 
+# signals
 signal state_changed(new_value)
 
-const MOVE_SPEED = 4.0
+# stretching constants
 const STRETCH_BASE_SPEED = 0.07
 const STRETCH_Y_MIN = 0.2
 const STRETCH_Y_MAX = 3.0
+
+# movement constants
+const MOVE_SPEED = 4.0
+const MOVE_MAX_X = 4
 
 func _ready():
     snap_to_ground()
@@ -26,6 +32,7 @@ func reset_state():
 
 func move(direction):
     velocity.x = (direction * MOVE_SPEED) if direction else move_toward(velocity.x, 0, MOVE_SPEED)
+    position.x = clamp(position.x, -MOVE_MAX_X, MOVE_MAX_X)
 
 func stretch_y(value):
     var normalized_scale = (scale.y - STRETCH_Y_MIN) / (STRETCH_Y_MAX - STRETCH_Y_MIN)
@@ -38,6 +45,7 @@ func stretch_y(value):
 func snap_to_ground():
     position.y = scale.y / 2.0
 
+# called on collision with walls
 func hit():
     if invincible: return
 
