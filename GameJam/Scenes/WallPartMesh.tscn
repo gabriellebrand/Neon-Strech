@@ -8,6 +8,7 @@ albedo_color = Color(1, 0, 1, 0.611765)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lagoo"]
 material = SubResource("StandardMaterial3D_0pxr1")
+size = Vector3(1, 1, 0.01)
 
 [node name="WallPartMesh" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_lagoo")

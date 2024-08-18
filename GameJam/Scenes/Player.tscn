@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cn2lk37i3068r"]
 
-[ext_resource type="Script" path="res://Scripts/box.gd" id="1_wyorl"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_wyorl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ksjlf"]
 
@@ -10,7 +10,7 @@ albedo_color = Color(0.988235, 0.627451, 0.231373, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_p7kd6"]
 material = SubResource("StandardMaterial3D_7pfat")
 
-[node name="Box" type="Area3D"]
+[node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1.00054, 0, 0, 0, 1.00054, 0, 0, 0, 1.00054, 0, 0, 0)
 script = ExtResource("1_wyorl")
 
@@ -19,3 +19,16 @@ shape = SubResource("BoxShape3D_ksjlf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_p7kd6")
+
+[node name="Ant" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(-0.194981, 0, 0.00272262, 0, 0.195, 0, -0.00272262, 0, -0.194981, 0, -0.576487, 0)
+script = null
