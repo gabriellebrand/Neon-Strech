@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var lives = 3
 @export var invincible = false
 
+signal state_changed(new_value)
+
 const MOVE_SPEED = 4.0
 const STRETCH_SPEED = 0.07
 const MINIMUM_STRETCH_Y = 0.2
@@ -10,7 +12,7 @@ const MAXIMUM_STRETCH_Y = 3.0
 
 func _ready():
     snap_to_ground()
-    reset_status()
+    reset_state()
 
 func _process(delta):
     stretch_y(Input.get_axis("stretch_down", "stretch_up"))
@@ -18,7 +20,7 @@ func _process(delta):
     move(Input.get_axis("move_left", "move_right"))
     move_and_slide()
 
-func reset_status():
+func reset_state():
     lives = 3
 
 func move(direction):
@@ -35,8 +37,11 @@ func snap_to_ground():
 
 func hit():
     if invincible: return
-    # player is invincible for some time
-    invincible = true
+
     lives -= 1
+    state_changed.emit(lives)
+
+    # player is invincible for some time (avoid multiple collision)
+    invincible = true
     await get_tree().create_timer(0.5).timeout
     invincible = false

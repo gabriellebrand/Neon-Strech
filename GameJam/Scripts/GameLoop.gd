@@ -13,12 +13,6 @@ func _ready():
     end_run()
     update_high_score_label(GameManager.current_high_score)
 
-func _process(delta):
-    var player = level.get_node("Player")
-    if player.lives<3: level_ui.get_node("Lives/LiveIcon3").hide()
-    if player.lives<2: level_ui.get_node("Lives/LiveIcon2").hide()
-    if player.lives<1: level_ui.get_node("Lives/LiveIcon1").hide()
-
 func start_run():
     get_tree().paused = false
     reset_level()
@@ -34,11 +28,15 @@ func reset_level():
     if (level): level.queue_free()
     level = level_scene.instantiate()
     level.connect("current_run_time_changed", Callable(GameManager, "_on_current_run_time_changed"))
-    add_child(level)        
+    level.get_node("Player").state_changed.connect(player_state_changed)
+    add_child(level)
 
 func update_score_label(score):
     level_ui.update_score_label(score)
 
 func update_high_score_label(high_score):
     main_menu.update_high_score_label(high_score)
-    
+
+# called when player state is changed
+func player_state_changed(lives):
+    level_ui.update_life_icons(lives)
