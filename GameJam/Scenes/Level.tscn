@@ -1,7 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh0amlcjjdkfe"]
+[gd_scene load_steps=8 format=3 uid="uid://dh0amlcjjdkfe"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_8pt3u"]
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
+[ext_resource type="Shader" path="res://Scripts/terrain.gdshader" id="3_e7qp6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7l23n"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyk5c"]
+noise = SubResource("FastNoiseLite_7l23n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xp80"]
+render_priority = 0
+shader = ExtResource("3_e7qp6")
+shader_parameter/height_scale = 0.5
+shader_parameter/albedo = Color(0, 0.0156863, 1, 1)
+shader_parameter/wire_color = Color(0, 0.72549, 0.831373, 1)
+shader_parameter/wire_width = 1.0
+shader_parameter/wire_smoothness = 0.01
+shader_parameter/modelOpacity = 0.038
+shader_parameter/noise = SubResource("NoiseTexture2D_qyk5c")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wjfew"]
+material = SubResource("ShaderMaterial_1xp80")
+size = Vector2(33, 33)
+subdivide_width = 33
+subdivide_depth = 33
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_8pt3u")
@@ -20,5 +43,8 @@ autostart = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.907044, 0.382207, -0.176604, 0, 0.419452, 0.907777, 0.421036, -0.823394, 0.380461, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_wjfew")
 
 [connection signal="timeout" from="WallSpawnTimer" to="." method="_on_timer_timeout"]
