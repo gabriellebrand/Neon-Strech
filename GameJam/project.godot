@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="GameJam"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/GameLoop.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://Scripts/GameManager.gd"
+
+[global_group]
+
+EntryPoint=""
 
 [input]
 

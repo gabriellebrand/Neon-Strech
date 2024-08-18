@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_r6b6b")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.52549)
 layout_mode = 1
 anchors_preset = 8

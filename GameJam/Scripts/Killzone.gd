@@ -1,8 +1,7 @@
 extends Area3D
 
 func die():
-    print("Died!")
-    get_tree().change_scene_to_file("res://Scenes/UI/MainMenu.tscn")
+    GameManager.reset_game()
 
 func _on_body_entered(body):
     die()

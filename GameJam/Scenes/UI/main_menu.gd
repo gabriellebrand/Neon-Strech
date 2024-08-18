@@ -3,10 +3,15 @@ extends Control
 @onready var high_score_label: Label = $VBoxContainer/HighScoreLabel
 
 func _ready() -> void:
-  set_high_score(0)
+    set_high_score(0)
+    
+func _process(delta):
+    #print(visible)
+    pass
 
 func _on_play_button_pressed() -> void:
-  get_tree().change_scene_to_file("res://Scenes/Main.tscn")
-  
+    print("play")
+    GameManager.start_game()
+    
 func set_high_score(score):
-  high_score_label.text = "High Score: " + str(score)
+    high_score_label.text = "High Score: " + str(score)

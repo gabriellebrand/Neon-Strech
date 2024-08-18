@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1r61yfobattf"]
+
+[ext_resource type="Script" path="res://Scripts/GameLoop.gd" id="1_foaun"]
+[ext_resource type="PackedScene" uid="uid://d3jahmithafae" path="res://Scenes/UI/MainMenu.tscn" id="3_5n3io"]
+[ext_resource type="PackedScene" uid="uid://bi8ebkbeanle7" path="res://Scenes/UI/LevelUI.tscn" id="3_ptt0j"]
+
+[node name="GameLoop" type="Node" groups=["EntryPoint"]]
+script = ExtResource("1_foaun")
+
+[node name="LevelUI" parent="." instance=ExtResource("3_ptt0j")]
+visible = false
+
+[node name="MainMenu" parent="." instance=ExtResource("3_5n3io")]
