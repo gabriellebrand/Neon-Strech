@@ -1,6 +1,6 @@
 extends Node
 
-var level_scene = preload("res://Scenes/Main.tscn")
+var level_scene = preload("res://Scenes/Level.tscn")
 @onready var level
 
 @onready var main_menu: Control = $MainMenu
@@ -10,7 +10,8 @@ func _ready():
     main_menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     level_ui.hide()
     reset_level()
-    reset_game()
+    end_run()
+    update_high_score_label(GameManager.current_high_score)
 
 func _process(delta):
     var player = level.get_node("Player")
@@ -18,24 +19,26 @@ func _process(delta):
     if player.lives<2: level_ui.get_node("Lives/LiveIcon2").hide()
     if player.lives<1: level_ui.get_node("Lives/LiveIcon1").hide()
 
-func reset_game():
-    get_tree().paused = true
-    main_menu.show()
-
-func start_game():
+func start_run():
     get_tree().paused = false
     reset_level()
     main_menu.hide()
+    update_score_label(0)
     level_ui.show()
-    level_ui.get_node("Lives/LiveIcon1").show()
-    level_ui.get_node("Lives/LiveIcon2").show()
-    level_ui.get_node("Lives/LiveIcon3").show()
 
+func end_run():    
+    get_tree().paused = true
+    main_menu.show()
+    
 func reset_level():
     if (level): level.queue_free()
     level = level_scene.instantiate()
-    add_child(level)
+    level.connect("current_run_time_changed", Callable(GameManager, "_on_current_run_time_changed"))
+    add_child(level)        
 
-func set_score(score):
-    var score_label = level_ui.get_node("ScoreLabel")
-    score_label.text = "Score: %10d" % score
+func update_score_label(score):
+    level_ui.update_score_label(score)
+
+func update_high_score_label(high_score):
+    main_menu.update_high_score_label(high_score)
+    
