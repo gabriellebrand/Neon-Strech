@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_2td22")
-high_score = 6000
+high_score = 0
+
