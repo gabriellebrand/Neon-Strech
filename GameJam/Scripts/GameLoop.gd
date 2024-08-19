@@ -8,7 +8,8 @@ var level_scene = preload("res://Scenes/Level.tscn")
 @onready var game_over_menu = $GameOverMenu
 
 func _ready():
-    main_menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+    #main_menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+    main_menu.process_mode = Node.PROCESS_MODE_ALWAYS
     game_over_menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     level_ui.process_mode = Node.PROCESS_MODE_ALWAYS
     level_ui.hide()

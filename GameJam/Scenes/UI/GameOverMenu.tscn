@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://i2v1tfdayv23"]
+[gd_scene load_steps=3 format=3 uid="uid://i2v1tfdayv23"]
 
 [ext_resource type="Script" path="res://Scripts/UI/game_over_menu.gd" id="1_8mf7f"]
+[ext_resource type="AudioStream" uid="uid://btvijxkhltdmx" path="res://Assets/Music/radio_button_click.mp3" id="2_jch0y"]
 
 [node name="GameOverMenu" type="Control"]
 layout_mode = 3
@@ -53,6 +54,10 @@ size_flags_horizontal = 4
 [node name="PlayButton" type="Button" parent="VBoxContainer/Container"]
 custom_minimum_size = Vector2(20, 40)
 layout_mode = 2
-text = "     PLAY AGAIN     "
+text = "     RETRY     "
+
+[node name="ButtonAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jch0y")
+volume_db = 10.0
 
 [connection signal="pressed" from="VBoxContainer/Container/PlayButton" to="." method="_on_play_button_pressed"]
