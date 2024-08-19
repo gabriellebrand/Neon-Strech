@@ -15,8 +15,10 @@ func update_life_icons(lives):
     live_icon_2.visible = lives>=2
     live_icon_1.visible = lives>=1
     
-func flash_new_high_score_label():
-    new_high_score_label.flash()
+    
+func flash_new_high_score_label(flash):
+    new_high_score_label.flash(flash)
+
     
 func update_multiplier_label(multiplier):
     multiplier_label.text = "x%d" % multiplier

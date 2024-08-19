@@ -1,5 +1,6 @@
 extends Node
 
+@onready var drums_audio_stream_player = $DrumsAudioStreamPlayer
 @onready var bass_audio_stream_player: AudioStreamPlayer = $BassAudioStreamPlayer
 @onready var synth_audio_stream_player: AudioStreamPlayer = $SynthAudioStreamPlayer
 
@@ -13,6 +14,8 @@ func _process(delta: float) -> void:
 func _on_conductor_loop_changed(loop_counter) -> void:
     print(loop_counter)
     if loop_counter == 1:
-        bass_audio_stream_player.volume_db = 0
+        drums_audio_stream_player.volume_db = 0
     elif loop_counter == 2:
+        bass_audio_stream_player.volume_db = 0
+    elif loop_counter == 4:
         synth_audio_stream_player.volume_db = 0

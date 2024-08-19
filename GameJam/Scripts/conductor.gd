@@ -74,3 +74,7 @@ func _on_StartTimer_timeout():
         play()
         $StartTimer.stop()
     _report_beat()
+
+
+func _on_start_timer_timeout() -> void:
+    pass # Replace with function body.

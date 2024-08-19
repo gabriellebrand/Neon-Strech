@@ -26,7 +26,7 @@ func _process(delta):
 func _on_timer_timeout():
     pass
 
-func _on_conductor_drums_measure_changed(position: Variant) -> void:
+func _on_conductor_measure_changed(position: Variant) -> void:
     #if (current_beat % spawn_wall_every_n_beats == 0):
         #var wall = wall_scene.instantiate()
         #add_child(wall)

@@ -10,6 +10,7 @@ var level_scene = preload("res://Scenes/Level.tscn")
 func _ready():
     main_menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     game_over_menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+    level_ui.process_mode = Node.PROCESS_MODE_ALWAYS
     level_ui.hide()
     get_tree().paused = true
     reset_level()
@@ -20,6 +21,7 @@ func start_run():
     reset_level()
     main_menu.hide()
     game_over_menu.hide()
+    level_ui.flash_new_high_score_label(false)
     level_ui.show()
     update_score_label(0)
 
@@ -51,5 +53,5 @@ func player_state_changed(lives):
     level_ui.update_life_icons(lives)
     
 func flash_new_high_score_label():
-    level_ui.flash_new_high_score_label()
+    level_ui.flash_new_high_score_label(true)
     
