@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh0amlcjjdkfe"]
+[gd_scene load_steps=21 format=3 uid="uid://dh0amlcjjdkfe"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_8pt3u"]
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
-[ext_resource type="Shader" path="res://Scripts/terrain.gdshader" id="3_e7qp6"]
+[ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="3_e7qp6"]
 [ext_resource type="Texture2D" uid="uid://8mwe4y3sf70s" path="res://Assets/vinyl1.png" id="4_apl4r"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7l23n"]
@@ -13,19 +13,74 @@ noise = SubResource("FastNoiseLite_7l23n")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xp80"]
 render_priority = 0
 shader = ExtResource("3_e7qp6")
-shader_parameter/height_scale = 0.5
+shader_parameter/amplitude = 0.5
 shader_parameter/albedo = Color(0, 0.0156863, 1, 1)
 shader_parameter/wire_color = Color(0, 0.72549, 0.831373, 1)
 shader_parameter/wire_width = 1.0
 shader_parameter/wire_smoothness = 0.01
+shader_parameter/mesh_id = 0
 shader_parameter/modelOpacity = 0.038
 shader_parameter/noise = SubResource("NoiseTexture2D_qyk5c")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wjfew"]
 material = SubResource("ShaderMaterial_1xp80")
-size = Vector2(33, 33)
-subdivide_width = 33
-subdivide_depth = 33
+size = Vector2(99, 99)
+subdivide_width = 99
+subdivide_depth = 99
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2gwui"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ievo3"]
+noise = SubResource("FastNoiseLite_2gwui")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8k1vl"]
+render_priority = 0
+shader = ExtResource("3_e7qp6")
+shader_parameter/amplitude = 5.0
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/wire_color = Color(0, 0, 1, 1)
+shader_parameter/wire_width = 1.0
+shader_parameter/wire_smoothness = 0.01
+shader_parameter/mesh_id = 0
+shader_parameter/modelOpacity = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_ievo3")
+
+[sub_resource type="GDScript" id="GDScript_nbxxa"]
+script/source = "extends MeshInstance3D
+
+#var material = mesh.surface_get_material(0)
+#var noise = NoiseTexture2D.new()
+##var noise = FastNoiseLite.new()
+#
+## Called when the node enters the scene tree for the first time.
+#func _ready():
+    #
+    #material.set_shader_parameter(\"noise\", noise)
+    #
+    #
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+    #noise.offset.y += 10
+    #material.set_shader_parameter(\"noise\", noise)
+    #
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2c0qe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ga4l"]
+noise = SubResource("FastNoiseLite_2c0qe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwb2x"]
+render_priority = 0
+shader = ExtResource("3_e7qp6")
+shader_parameter/amplitude = 5.0
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/wire_color = Color(0, 0, 0.870588, 1)
+shader_parameter/wire_width = 1.0
+shader_parameter/wire_smoothness = 0.01
+shader_parameter/mesh_id = 1
+shader_parameter/modelOpacity = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_2ga4l")
 
 [sub_resource type="Gradient" id="Gradient_3snbp"]
 offsets = PackedFloat32Array(0, 0.662, 1)
@@ -33,7 +88,7 @@ colors = PackedColorArray(0.984314, 0.831373, 0.4, 1, 0.895569, 0.0740891, 0.785
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0udgo"]
 gradient = SubResource("Gradient_3snbp")
-fill_from = Vector2(1, 0.994595)
+fill_from = Vector2(1, 1)
 repeat = 1
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_d0kw7"]
@@ -55,9 +110,10 @@ adjustment_enabled = true
 script = ExtResource("1_8pt3u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.944966, 0.327169, 0, -0.327169, 0.944966, 0, 2.88977, 2.66849)
-fov = 90.0
-near = 0.5
+transform = Transform3D(1, 0, 0, 0, 0.87462, -0.48481, 0, 0.48481, 0.87462, 0, 1.634, 4.49)
+fov = 106.2
+near = 0.001
+far = 73.8
 
 [node name="Player" parent="." instance=ExtResource("2_7bym5")]
 collision_layer = 128
@@ -70,11 +126,20 @@ autostart = true
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.907044, 0.382207, -0.176604, 0, 0.419452, 0.907777, 0.421036, -0.823394, 0.380461, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Terrain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
 mesh = SubResource("PlaneMesh_wjfew")
+surface_material_override/0 = SubResource("ShaderMaterial_8k1vl")
+script = SubResource("GDScript_nbxxa")
+
+[node name="Terrain2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
+mesh = SubResource("PlaneMesh_wjfew")
+surface_material_override/0 = SubResource("ShaderMaterial_mwb2x")
+script = SubResource("GDScript_nbxxa")
 
 [node name="BackgroundVinyl" type="Sprite3D" parent="."]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 2.04004, -11)
+transform = Transform3D(4.765, 0, 0, 0, 4.765, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
 texture = ExtResource("4_apl4r")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
