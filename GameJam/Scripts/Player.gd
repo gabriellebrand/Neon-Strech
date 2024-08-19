@@ -12,11 +12,33 @@ const STRETCH_BASE_SPEED = 0.07
 const STRETCH_Y_MIN = 0.2
 const STRETCH_Y_MAX = 3.0
 
+# low-pass and high-pass filters constants
+const LOW_PASS_MAX_STRECTH_CUTOFF_HZ = 3000
+const LOW_PASS_NO_CUTOFF_HZ = 10000
+
+const HIGH_PASS_MAX_STRECTH_CUTOFF_HZ = 300
+const HIGH_PASS_NO_CUTOFF_HZ = 1
+
+const LOW_PASS_CUTOFF_MULTIPLIER = (LOW_PASS_MAX_STRECTH_CUTOFF_HZ - LOW_PASS_NO_CUTOFF_HZ) / ((1 / STRETCH_Y_MIN) - 1.0)
+const LOW_PASS_CUTOFF_CONSTANT = LOW_PASS_NO_CUTOFF_HZ - (LOW_PASS_CUTOFF_MULTIPLIER * 1.0)
+
+const HIGH_PASS_CUTOFF_MULTIPLIER = (HIGH_PASS_MAX_STRECTH_CUTOFF_HZ - HIGH_PASS_NO_CUTOFF_HZ) / (STRETCH_Y_MAX - 1.0)
+const HIGH_PASS_CUTOFF_CONSTANT = HIGH_PASS_NO_CUTOFF_HZ - (HIGH_PASS_CUTOFF_MULTIPLIER * 1.0)
+
+const MUSIC_BUS_ID = 1
+const LOW_PASS_FILTER_ID = 1
+const HIGH_PASS_FILTER_ID = 2
+var low_pass_filter = AudioServer.get_bus_effect(MUSIC_BUS_ID, LOW_PASS_FILTER_ID)
+var high_pass_filter = AudioServer.get_bus_effect(MUSIC_BUS_ID, HIGH_PASS_FILTER_ID)
+
+
 # movement constants
 const MOVE_SPEED = 4.0
 const MOVE_MAX_X = 3.5
 
 func _ready():
+    AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, LOW_PASS_FILTER_ID, false)
+    AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, HIGH_PASS_FILTER_ID, false)
     snap_to_ground()
     reset_state()
 
@@ -41,6 +63,18 @@ func stretch_y(value):
     new_scale_y = clamp(new_scale_y, STRETCH_Y_MIN, STRETCH_Y_MAX)
     scale.x = 1 / new_scale_y
     scale.y = new_scale_y
+    
+    if (scale.y == 1.0):
+        AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, LOW_PASS_FILTER_ID, false)  
+        AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, HIGH_PASS_FILTER_ID, false)
+    elif (scale.y > 1.0):
+        high_pass_filter.cutoff_hz = HIGH_PASS_CUTOFF_MULTIPLIER * scale.y + HIGH_PASS_CUTOFF_CONSTANT
+        AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, LOW_PASS_FILTER_ID, false)
+        AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, HIGH_PASS_FILTER_ID, true)
+    else:
+        low_pass_filter.cutoff_hz = LOW_PASS_CUTOFF_MULTIPLIER * scale.x + LOW_PASS_CUTOFF_CONSTANT        
+        AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, LOW_PASS_FILTER_ID, true)
+        AudioServer.set_bus_effect_enabled(MUSIC_BUS_ID, HIGH_PASS_FILTER_ID, false)
 
 func snap_to_ground():
     position.y = scale.y / 2.0
