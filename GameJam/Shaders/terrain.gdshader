@@ -23,12 +23,11 @@ const float VELOCITY = 3.0;
 varying vec3 barys;
 
 float height(vec2 position, float time) {
-    if ((position.x > 4.) || (position.x < -4.0)) {
-        vec2 uv = position/99. + 0.5;
-        //uv.y -= 0.05*TIME;
-        return texture(noise, uv).x;
-    }
-    return 0.0;
+    float no_road = (1.0 - smoothstep(-8, -2., position.x)) + smoothstep(2, 8, position.x);
+    //float no_road = (1.-step(-4,position.x)) + step(4, position.x);
+    vec2 uv = position/99. + 0.5;
+    float h = texture(noise, uv).x*no_road;
+    return h;
 }
 
 

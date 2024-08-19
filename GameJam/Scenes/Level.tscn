@@ -120,10 +120,10 @@ plane = Plane(-1, 0, 0, 0)
 script = ExtResource("1_8pt3u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.87462, -0.48481, 0, 0.48481, 0.87462, 0, 1.634, 4.49)
-fov = 106.2
+transform = Transform3D(1, 0, 0, 0, 0.989777, 0.142629, 0, -0.142629, 0.989777, 0, 1.634, 3.1)
+fov = 83.3
 near = 0.001
-far = 73.8
+far = 94.35
 
 [node name="Player" parent="." instance=ExtResource("2_7bym5")]
 collision_layer = 128
@@ -173,16 +173,13 @@ script = ExtResource("5_cxqaj")
 [node name="DrumsAudioStreamPlayer" type="AudioStreamPlayer" parent="LevelSoundtrack"]
 stream = ExtResource("6_yfn7q")
 autoplay = true
-bus = &"Music"
 
 [node name="BassAudioStreamPlayer" type="AudioStreamPlayer" parent="LevelSoundtrack"]
 stream = ExtResource("7_xqwfx")
 autoplay = true
-bus = &"Music"
 
 [node name="SynthAudioStreamPlayer" type="AudioStreamPlayer" parent="LevelSoundtrack"]
 stream = ExtResource("8_j1jxp")
 autoplay = true
-bus = &"Music"
 
 [connection signal="timeout" from="WallSpawnTimer" to="." method="_on_timer_timeout"]
