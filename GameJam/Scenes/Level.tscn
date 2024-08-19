@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dh0amlcjjdkfe"]
+[gd_scene load_steps=28 format=3 uid="uid://dh0amlcjjdkfe"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_8pt3u"]
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bqfmcle8dfcyk" path="res://Assets/Music/synth_drums.wav" id="6_yfn7q"]
 [ext_resource type="AudioStream" uid="uid://diopw4wny5bbg" path="res://Assets/Music/synth_bass.wav" id="7_xqwfx"]
 [ext_resource type="AudioStream" uid="uid://dj75s47ox7kqy" path="res://Assets/Music/synth_synth1.wav" id="8_j1jxp"]
+[ext_resource type="Script" path="res://Scripts/conductor.gd" id="9_5or4g"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5f4a3"]
 plane = Plane(1, 0, 0, 0)
@@ -162,19 +163,28 @@ environment = SubResource("Environment_ctuod")
 [node name="Sound" type="Node" parent="."]
 script = ExtResource("5_cxqaj")
 
-[node name="DrumsAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
+[node name="ConductorDrums" type="AudioStreamPlayer" parent="Sound"]
+unique_name_in_owner = true
 stream = ExtResource("6_yfn7q")
 autoplay = true
 bus = &"Music"
+script = ExtResource("9_5or4g")
+
+[node name="StartTimer" type="Timer" parent="Sound/ConductorDrums"]
+one_shot = true
 
 [node name="BassAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource("7_xqwfx")
+volume_db = -80.0
 autoplay = true
 bus = &"Music"
 
 [node name="SynthAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource("8_j1jxp")
+volume_db = -80.0
 autoplay = true
 bus = &"Music"
 
 [connection signal="timeout" from="WallSpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="loop_changed" from="Sound/ConductorDrums" to="Sound" method="_on_conductor_loop_changed"]
+[connection signal="timeout" from="Sound/ConductorDrums/StartTimer" to="Sound/ConductorDrums" method="_on_StartTimer_timeout"]
