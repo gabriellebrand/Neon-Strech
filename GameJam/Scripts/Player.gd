@@ -14,7 +14,7 @@ const STRETCH_Y_MAX = 3.0
 
 # movement constants
 const MOVE_SPEED = 4.0
-const MOVE_MAX_X = 4
+const MOVE_MAX_X = 3.5
 
 func _ready():
     snap_to_ground()

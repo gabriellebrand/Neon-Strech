@@ -8,7 +8,7 @@ extends Node3D
 
 # wall dimensions
 const wh = 6.0
-const ww = 8.0
+const ww = 9.0
 
 # min and max z depth for walls
 # wall spawns at z=z_initial and moves up to a positive z=z_final
