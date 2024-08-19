@@ -1,6 +1,5 @@
 extends Node3D
 
-@export var speed = 3.5
 
 @onready var wall_part_top = $WallPartTop
 @onready var wall_part_left = $WallPartLeft
@@ -15,7 +14,7 @@ const ww = 9.0
 
 # min and max z depth for walls
 # wall spawns at z=z_initial and moves up to a positive z=z_final
-const z_initial = -10
+const z_initial = -GameManager.wall_spawn_distance_to_player
 const z_final = 4
 
 # hole min/max dimensions
@@ -55,7 +54,7 @@ func _ready():
 
 
 func _process(delta):
-    position.z += speed * delta
+    position.z += GameManager.current_speed * delta
     if position.z >= 0:
         var c = wall_part_top.mesh.material.albedo_color
         c.a = 0.5 - position.z/z_final

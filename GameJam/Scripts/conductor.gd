@@ -39,7 +39,6 @@ func _report_beat():
             measure = 1
         emit_signal("beat_changed", song_position_in_beats)
         emit_signal("measure_changed", measure)
-        print(song_position_in_beats, " ", measure, " ", loop_counter)
         last_reported_beat = song_position_in_beats
         measure += 1
         
@@ -75,3 +74,7 @@ func _on_StartTimer_timeout():
         play()
         $StartTimer.stop()
     _report_beat()
+
+
+func _on_start_timer_timeout() -> void:
+    pass # Replace with function body.

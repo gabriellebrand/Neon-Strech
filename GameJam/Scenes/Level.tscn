@@ -7,10 +7,10 @@
 [ext_resource type="Script" path="res://Scripts/Terrain.gd" id="5_2wycv"]
 [ext_resource type="Script" path="res://Scripts/LevelSoundTrack.gd" id="5_cxqaj"]
 [ext_resource type="AudioStream" uid="uid://bqfmcle8dfcyk" path="res://Assets/Music/synth_drums.wav" id="6_yfn7q"]
-[ext_resource type="AudioStream" uid="uid://ca286mql845rh" path="res://Assets/Music/vinyl_background.mp3" id="7_cxrhp"]
 [ext_resource type="AudioStream" uid="uid://diopw4wny5bbg" path="res://Assets/Music/synth_bass.wav" id="7_xqwfx"]
 [ext_resource type="AudioStream" uid="uid://dj75s47ox7kqy" path="res://Assets/Music/synth_synth1.wav" id="8_j1jxp"]
 [ext_resource type="Script" path="res://Scripts/conductor.gd" id="9_5or4g"]
+[ext_resource type="AudioStream" uid="uid://ca286mql845rh" path="res://Assets/Music/vinyl_background.mp3" id="9_048yn"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5f4a3"]
 plane = Plane(1, 0, 0, 0)
@@ -116,10 +116,6 @@ far = 94.35
 collision_layer = 128
 collision_mask = 2
 
-[node name="WallSpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
 [node name="BackgroundVinyl" type="Sprite3D" parent="."]
 transform = Transform3D(4.765, 0, 0, 0, 4.765, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
 texture = ExtResource("4_apl4r")
@@ -179,6 +175,11 @@ volume_db = -80.0
 autoplay = true
 bus = &"Music"
 
+[node name="VinylAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("9_048yn")
+volume_db = 10.0
+autoplay = true
+
 [node name="BassAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource("7_xqwfx")
 volume_db = -80.0
@@ -191,11 +192,8 @@ volume_db = -80.0
 autoplay = true
 bus = &"Music"
 
-[node name="VinylAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
-stream = ExtResource("7_cxrhp")
-volume_db = 10.0
-autoplay = true
-
-[connection signal="timeout" from="WallSpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="state_changed" from="Player" to="." method="_on_player_state_changed"]
+[connection signal="loop_changed" from="Sound/Conductor" to="." method="_on_conductor_loop_changed"]
 [connection signal="loop_changed" from="Sound/Conductor" to="Sound" method="_on_conductor_loop_changed"]
-[connection signal="timeout" from="Sound/Conductor/StartTimer" to="Sound/Conductor" method="_on_StartTimer_timeout"]
+[connection signal="measure_changed" from="Sound/Conductor" to="." method="_on_conductor_measure_changed"]
+[connection signal="timeout" from="Sound/Conductor/StartTimer" to="Sound/Conductor" method="_on_start_timer_timeout"]
