@@ -184,6 +184,9 @@ volume_db = -80.0
 autoplay = true
 bus = &"Music"
 
+[connection signal="state_changed" from="Player" to="." method="_on_player_state_changed"]
 [connection signal="timeout" from="WallSpawnTimer" to="." method="_on_timer_timeout"]
+[connection signal="loop_changed" from="Sound/ConductorDrums" to="." method="_on_conductor_loop_changed"]
 [connection signal="loop_changed" from="Sound/ConductorDrums" to="Sound" method="_on_conductor_loop_changed"]
+[connection signal="measure_changed" from="Sound/ConductorDrums" to="." method="_on_conductor_drums_measure_changed"]
 [connection signal="timeout" from="Sound/ConductorDrums/StartTimer" to="Sound/ConductorDrums" method="_on_StartTimer_timeout"]

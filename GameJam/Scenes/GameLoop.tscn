@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/GameLoop.gd" id="1_foaun"]
 [ext_resource type="PackedScene" uid="uid://d3jahmithafae" path="res://Scenes/UI/MainMenu.tscn" id="3_5n3io"]
 [ext_resource type="PackedScene" uid="uid://bi8ebkbeanle7" path="res://Scenes/UI/LevelUI.tscn" id="3_ptt0j"]
-[ext_resource type="PackedScene" uid="uid://i2v1tfdayv23" path="res://Scenes/UI/GameOverMenu.tscn" id="4_6omdt"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/GameOverMenu.tscn" id="4_6omdt"]
 
 [node name="GameLoop" type="Node" groups=["EntryPoint"]]
 script = ExtResource("1_foaun")

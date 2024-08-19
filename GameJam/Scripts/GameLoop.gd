@@ -32,11 +32,15 @@ func reset_level():
     if (level): level.queue_free()
     level = level_scene.instantiate()
     level.connect("current_run_time_changed", Callable(GameManager, "_on_current_run_time_changed"))
+    level.connect("current_streak_changed", update_multiplier_label)
     level.get_node("Player").state_changed.connect(player_state_changed)
     add_child(level)
 
 func update_score_label(score):
     level_ui.update_score_label(score)
+    
+func update_multiplier_label(multiplier):
+    level_ui.update_multiplier_label(multiplier)
 
 func update_high_score_label(high_score):
     main_menu.update_high_score_label(high_score)

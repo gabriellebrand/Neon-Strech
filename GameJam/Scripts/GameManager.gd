@@ -7,7 +7,19 @@ const SAVE_DATA = preload("res://Resources/save_data.tres")
 @onready var current_score = 0
 @onready var current_high_score = SAVE_DATA.high_score
 @onready var has_new_high_score = false
-    
+
+@onready var current_bpm = 100
+
+const wall_spawn_distance_to_player = 12
+const beats_to_player =  8
+
+@onready var current_speed:
+    set(new_speed):
+        current_speed = new_speed
+        current_bpm = 60.0 * current_speed / (wall_spawn_distance_to_player * beats_to_player)
+    get:
+        return wall_spawn_distance_to_player * (current_bpm/60.0) / beats_to_player
+
 func start_run():
     entry_point.start_run()
     

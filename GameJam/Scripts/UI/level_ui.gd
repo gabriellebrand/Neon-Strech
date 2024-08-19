@@ -5,6 +5,7 @@ extends Control
 @onready var live_icon_2 = $Lives/LiveIcon2
 @onready var live_icon_3 = $Lives/LiveIcon3
 @onready var new_high_score_label: Label = $NewHighScoreLabel
+@onready var multiplier_label: Label = $MultiplierLabel
 
 func update_score_label(score):
     score_label.text = "Score: %8d" % score
@@ -16,3 +17,6 @@ func update_life_icons(lives):
     
 func flash_new_high_score_label():
     new_high_score_label.flash()
+    
+func update_multiplier_label(multiplier):
+    multiplier_label.text = "x%d" % multiplier
