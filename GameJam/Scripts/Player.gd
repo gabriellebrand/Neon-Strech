@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 # state
-var lives = 3
+const initial_lives = 3
+var lives = initial_lives
 var invincible = false
 
 # signals
@@ -49,8 +50,8 @@ func _process(delta):
     move_and_slide()
 
 func reset_state():
-    lives = 3
-    state_changed.emit(3)
+    lives = initial_lives
+    state_changed.emit(initial_lives)
 
 func move(direction):
     velocity.x = (direction * MOVE_SPEED) if direction else move_toward(velocity.x, 0, MOVE_SPEED)

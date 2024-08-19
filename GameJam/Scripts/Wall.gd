@@ -21,7 +21,7 @@ const z_final = 4
 # hole min/max dimensions
 const hole_h_min = 0.5
 const hole_h_max = 4.0
-const hole_area = 4.0
+const hole_area = 3.0
 
 
 func _ready():
