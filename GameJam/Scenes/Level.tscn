@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
 [ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="3_e7qp6"]
 [ext_resource type="Texture2D" uid="uid://8mwe4y3sf70s" path="res://Assets/vinyl1.png" id="4_apl4r"]
+[ext_resource type="Script" path="res://Scripts/Terrain.gd" id="5_2wycv"]
 [ext_resource type="Script" path="res://Scripts/LevelSoundTrack.gd" id="5_cxqaj"]
 [ext_resource type="AudioStream" uid="uid://bqfmcle8dfcyk" path="res://Assets/Music/synth_drums.wav" id="6_yfn7q"]
 [ext_resource type="AudioStream" uid="uid://diopw4wny5bbg" path="res://Assets/Music/synth_bass.wav" id="7_xqwfx"]
@@ -21,10 +22,12 @@ plane = Plane(-1, 0, 0, 0)
 noise = SubResource("FastNoiseLite_7l23n")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xp80"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_e7qp6")
 shader_parameter/amplitude = 0.5
-shader_parameter/albedo = Color(0, 0.0156863, 1, 1)
+shader_parameter/time = 0.0
+shader_parameter/albedo = Color(0.621218, 0.0363531, 0.27693, 1)
 shader_parameter/wire_color = Color(0, 0.72549, 0.831373, 1)
 shader_parameter/wire_width = 1.0
 shader_parameter/wire_smoothness = 0.01
@@ -47,6 +50,7 @@ noise = SubResource("FastNoiseLite_2gwui")
 render_priority = 0
 shader = ExtResource("3_e7qp6")
 shader_parameter/amplitude = 5.0
+shader_parameter/time = 0.0
 shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/wire_color = Color(0, 0, 1, 1)
 shader_parameter/wire_width = 1.0
@@ -54,26 +58,6 @@ shader_parameter/wire_smoothness = 0.01
 shader_parameter/mesh_id = 0
 shader_parameter/modelOpacity = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_ievo3")
-
-[sub_resource type="GDScript" id="GDScript_nbxxa"]
-script/source = "extends MeshInstance3D
-
-#var material = mesh.surface_get_material(0)
-#var noise = NoiseTexture2D.new()
-##var noise = FastNoiseLite.new()
-#
-## Called when the node enters the scene tree for the first time.
-#func _ready():
-    #
-    #material.set_shader_parameter(\"noise\", noise)
-    #
-    #
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-    #noise.offset.y += 10
-    #material.set_shader_parameter(\"noise\", noise)
-    #
-"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2c0qe"]
 
@@ -84,6 +68,7 @@ noise = SubResource("FastNoiseLite_2c0qe")
 render_priority = 0
 shader = ExtResource("3_e7qp6")
 shader_parameter/amplitude = 5.0
+shader_parameter/time = 0.0
 shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/wire_color = Color(0, 0, 0.870588, 1)
 shader_parameter/wire_width = 1.0
@@ -153,17 +138,18 @@ shape = SubResource("WorldBoundaryShape3D_cjq63")
 
 [node name="Terrain" type="MeshInstance3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
+visible = false
 mesh = SubResource("PlaneMesh_wjfew")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_8k1vl")
-script = SubResource("GDScript_nbxxa")
+script = ExtResource("5_2wycv")
 
 [node name="Terrain2" type="MeshInstance3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
 mesh = SubResource("PlaneMesh_wjfew")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_mwb2x")
-script = SubResource("GDScript_nbxxa")
+script = ExtResource("5_2wycv")
 
 [node name="Light" type="Node" parent="."]
 

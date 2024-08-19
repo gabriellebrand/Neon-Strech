@@ -3,6 +3,7 @@ shader_type spatial;
 uniform sampler2D noise;
 uniform sampler2D normalmap;
 uniform float amplitude = 0.5;
+uniform float time = 0.0;
 
 uniform vec4 albedo : source_color = vec4(1.0);
 uniform vec4 wire_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
@@ -24,7 +25,7 @@ const float LIMIT = 8.;
 
 varying vec3 barys;
 
-float height(vec2 position, float time) {
+float height(vec2 position) {
     float no_road = (1.0 - smoothstep(-LIMIT, -ROAD_WIDTH, position.x)) + smoothstep(ROAD_WIDTH, LIMIT, position.x);
     //float no_road = (1.-step(-4,position.x)) + step(4, position.x);
     vec2 uv = position/99. + 0.5;
@@ -35,17 +36,17 @@ float height(vec2 position, float time) {
 
 void vertex() {
     vec2 pos = VERTEX.xz;
-    float k = amplitude*height(pos, TIME);
+    float k = amplitude*height(pos);
     VERTEX.y = k;
 
     if (mesh_id == 0)
-        VERTEX.z = VERTEX.z + VELOCITY*mod(TIME+MESH_SIZE/VELOCITY, 2.0*MESH_SIZE/VELOCITY);
+        VERTEX.z = VERTEX.z + VELOCITY*mod(time+MESH_SIZE/VELOCITY, 2.0*MESH_SIZE/VELOCITY);
     else
-        VERTEX.z = VERTEX.z + VELOCITY*mod(TIME, 2.0*MESH_SIZE/VELOCITY);
+        VERTEX.z = VERTEX.z + VELOCITY*mod(time, 2.0*MESH_SIZE/VELOCITY);
 
 
-    NORMAL = normalize(vec3(k - height(pos + vec2(0.1, 0.0), TIME),
-        0.1, k - height(pos + vec2(0.0, 0.8), TIME)));
+    NORMAL = normalize(vec3(k - height(pos + vec2(0.1, 0.0)),
+        0.1, k - height(pos + vec2(0.0, 0.8))));
         barys = vectors[VERTEX_ID % 3];
 
     //COLOR = VERTEX
