@@ -139,7 +139,6 @@ shape = SubResource("WorldBoundaryShape3D_cjq63")
 
 [node name="Terrain" type="MeshInstance3D" parent="Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
-visible = false
 mesh = SubResource("PlaneMesh_wjfew")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_8k1vl")
