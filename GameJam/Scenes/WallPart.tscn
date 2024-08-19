@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://djhhqtduyphhl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqt42"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.752941, 0.815686, 0, 0.690196)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1dsqu"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_eqt42")
+size = Vector3(1, 1, 0.01)
+
+[node name="WallPart" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_1dsqu")

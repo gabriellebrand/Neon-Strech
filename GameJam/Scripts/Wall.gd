@@ -2,9 +2,12 @@ extends Node3D
 
 @export var speed = 3.5
 
-@onready var wall_part_mesh_top = $WallPartMeshTop
-@onready var wall_part_mesh_left = $WallPartMeshLeft
-@onready var wall_part_mesh_right = $WallPartMeshRight
+@onready var wall_part_top = $WallPartTop
+@onready var wall_part_left = $WallPartLeft
+@onready var wall_part_right = $WallPartRight
+
+# hit
+const red = Color(200, 0, 0, 0.5)
 
 # wall dimensions
 const wh = 6.0
@@ -13,12 +16,13 @@ const ww = 9.0
 # min and max z depth for walls
 # wall spawns at z=z_initial and moves up to a positive z=z_final
 const z_initial = -10
-const z_final = 3
+const z_final = 4
 
 # hole min/max dimensions
 const hole_h_min = 0.5
 const hole_h_max = 4.0
 const hole_area = 4.0
+
 
 func _ready():
     # wall spawn at z_initial
@@ -39,19 +43,31 @@ func _ready():
     var dy = wh-((wh-h)/2)
 
     # top
-    wall_part_mesh_top.position = Vector3(orig, wh-((wh-h)/2.0), 0)
-    wall_part_mesh_top.scale = Vector3(w, wh-h, 1)
+    wall_part_top.position = Vector3(orig, wh-((wh-h)/2.0), 0)
+    wall_part_top.scale = Vector3(w, wh-h, 1)
 
     # left
-    wall_part_mesh_left.position = Vector3(-dx + orig/2, wh/2, 0)
-    wall_part_mesh_left.scale = Vector3(bx+orig, wh, 1)
+    wall_part_left.position = Vector3(-dx + orig/2, wh/2, 0)
+    wall_part_left.scale = Vector3(bx+orig, wh, 1)
 
     # right
-    wall_part_mesh_right.position = Vector3(dx + orig/2, wh/2, 0)
-    wall_part_mesh_right.scale = Vector3(bx-orig, wh, 1)
+    wall_part_right.position = Vector3(dx + orig/2, wh/2, 0)
+    wall_part_right.scale = Vector3(bx-orig, wh, 1)
 
 
 func _process(delta):
     position.z += speed * delta
+    if position.z >= 0:
+        var c = wall_part_top.mesh.material.albedo_color
+        c.a = 0.5 - position.z/z_final
+        wall_part_top.mesh.material.albedo_color = c
+        wall_part_left.mesh.material.albedo_color = c
+        wall_part_right.mesh.material.albedo_color = c
     if position.z >= z_final:
         queue_free()
+
+
+func on_hit():
+    wall_part_left.mesh.material.albedo_color = red
+    wall_part_right.mesh.material.albedo_color = red
+    wall_part_top.mesh.material.albedo_color = red

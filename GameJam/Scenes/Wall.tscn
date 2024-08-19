@@ -1,13 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://5776bj6f0sd"]
+[gd_scene load_steps=10 format=3 uid="uid://5776bj6f0sd"]
 
 [ext_resource type="Script" path="res://Scripts/Wall.gd" id="1_6w0di"]
-[ext_resource type="PackedScene" uid="uid://djhhqtduyphhl" path="res://Scenes/WallPartMesh.tscn" id="2_e3ogo"]
+[ext_resource type="PackedScene" uid="uid://djhhqtduyphhl" path="res://Scenes/WallPart.tscn" id="2_e3ogo"]
+[ext_resource type="PackedScene" uid="uid://dlb7l34jra5p7" path="res://Scenes/Killzone.tscn" id="3_jws4q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wtxa"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.752941, 0.815686, 0, 0.690196)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7tk8y"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_6wtxa")
+size = Vector3(1, 1, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmc5b"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.752941, 0.815686, 0, 0.690196)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fk353"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_cmc5b")
+size = Vector3(1, 1, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jde2w"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.752941, 0.815686, 0, 0.690196)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqj7t"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_jde2w")
+size = Vector3(1, 1, 0.01)
 
 [node name="Wall" type="Node3D"]
 script = ExtResource("1_6w0di")
 
-[node name="WallPartMeshTop" parent="." instance=ExtResource("2_e3ogo")]
+[node name="WallPartTop" parent="." instance=ExtResource("2_e3ogo")]
+mesh = SubResource("BoxMesh_7tk8y")
 
-[node name="WallPartMeshLeft" parent="." instance=ExtResource("2_e3ogo")]
+[node name="Killzone" parent="WallPartTop" instance=ExtResource("3_jws4q")]
 
-[node name="WallPartMeshRight" parent="." instance=ExtResource("2_e3ogo")]
+[node name="WallPartLeft" parent="." instance=ExtResource("2_e3ogo")]
+mesh = SubResource("BoxMesh_fk353")
+
+[node name="Killzone" parent="WallPartLeft" instance=ExtResource("3_jws4q")]
+
+[node name="WallPartRight" parent="." instance=ExtResource("2_e3ogo")]
+mesh = SubResource("BoxMesh_gqj7t")
+
+[node name="Killzone" parent="WallPartRight" instance=ExtResource("3_jws4q")]
