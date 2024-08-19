@@ -35,7 +35,7 @@ func reset_level():
     if (level): level.queue_free()
     level = level_scene.instantiate()
     level.connect("current_run_time_changed", Callable(GameManager, "_on_current_run_time_changed"))
-    level.connect("current_streak_changed", update_multiplier_label)
+    level.connect("current_streak_changed", Callable(GameManager, "_on_current_streak_changed"))
     level.get_node("Player").state_changed.connect(player_state_changed)
     add_child(level)
 
