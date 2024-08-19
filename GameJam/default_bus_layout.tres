@@ -3,13 +3,11 @@
 [sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_gpugw"]
 resource_name = "PitchShift"
 
-[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_hcvym"]
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_in6m7"]
 resource_name = "LowPassFilter"
-cutoff_hz = 10000.0
 
-[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_0rxxc"]
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_fogxv"]
 resource_name = "HighPassFilter"
-cutoff_hz = 10000.0
 
 [resource]
 bus/1/name = &"Music"
@@ -19,10 +17,10 @@ bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectPitchShift_gpugw")
-bus/1/effect/0/enabled = false
-bus/1/effect/1/effect = SubResource("AudioEffectLowPassFilter_hcvym")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectLowPassFilter_in6m7")
 bus/1/effect/1/enabled = true
-bus/1/effect/2/effect = SubResource("AudioEffectHighPassFilter_0rxxc")
+bus/1/effect/2/effect = SubResource("AudioEffectHighPassFilter_fogxv")
 bus/1/effect/2/enabled = true
 bus/2/name = &"SFX"
 bus/2/solo = false

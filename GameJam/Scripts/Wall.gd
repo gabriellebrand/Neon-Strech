@@ -40,7 +40,6 @@ func _ready():
 
     # distance to center of wall parts
     var dx = (ww-bx)/2
-    var dy = wh-((wh-h)/2)
 
     # top
     wall_part_top.position = Vector3(orig, wh-((wh-h)/2.0), 0)
