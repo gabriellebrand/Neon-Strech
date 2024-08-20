@@ -31,6 +31,8 @@ func start_run():
     entry_point.start_run()
     
 func end_run():
+    #Engine.time_scale = 0.5
+
     if (has_new_high_score):
         entry_point.update_high_score_label(current_high_score)
         var new_save_date = SaveData.new()

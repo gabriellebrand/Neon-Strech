@@ -4,6 +4,7 @@ extends CharacterBody3D
 const initial_lives = 1
 var lives = initial_lives
 var invincible = false
+var move_z = false
 
 # signals
 signal state_changed(new_value)
@@ -46,14 +47,16 @@ func _ready():
 func _process(delta):
     stretch_y(Input.get_axis("stretch_down", "stretch_up"))
     snap_to_ground()
-    move(Input.get_axis("move_left", "move_right"))
+    move_x(Input.get_axis("move_left", "move_right"))
+    if move_z:
+      velocity.z = (GameManager.current_speed)
     move_and_slide()
 
 func reset_state():
     lives = initial_lives
     state_changed.emit(initial_lives)
 
-func move(direction):
+func move_x(direction):
     velocity.x = (direction * MOVE_SPEED) if direction else move_toward(velocity.x, 0, MOVE_SPEED)
     position.x = clamp(position.x, -MOVE_MAX_X, MOVE_MAX_X)
 
@@ -89,6 +92,7 @@ func hit():
 
     # game over
     if lives <= 0:
+        move_z = true
         GameManager.end_run()
         return
 
