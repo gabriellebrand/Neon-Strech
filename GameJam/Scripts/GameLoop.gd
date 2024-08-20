@@ -27,7 +27,7 @@ func start_run():
     update_score_label(0)
 
 # call back for end of game, called by GameManager
-func end_run():    
+func end_run():
     get_tree().paused = true
     game_over_menu.show()
 
@@ -55,4 +55,7 @@ func player_state_changed(lives):
     
 func flash_new_high_score_label():
     level_ui.flash_new_high_score_label(true)
+    
+func slow_down_all_tracks():
+    level.get_node("Sound").slow_down_all_tracks()
     
