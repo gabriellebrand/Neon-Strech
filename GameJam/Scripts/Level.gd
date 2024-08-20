@@ -21,7 +21,7 @@ var current_streak = 0:
 func _process(delta):
     current_run_time += delta
     emit_signal("current_run_time_changed", current_run_time)
-    background_vinyl.rotate(Vector3(0,0,1), delta)
+    background_vinyl.rotate(Vector3(0,0,1), GameManager.current_speed * delta)
 
 func _on_conductor_measure_changed(position: Variant) -> void:
     if (position % 4 == 1):
