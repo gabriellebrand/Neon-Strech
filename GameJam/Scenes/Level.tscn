@@ -121,11 +121,11 @@ collision_layer = 128
 collision_mask = 2
 
 [node name="BackgroundVinyl" type="Sprite3D" parent="."]
-transform = Transform3D(4.765, 0, 0, 0, 4.765, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
+transform = Transform3D(4.12661, 2.3825, 0, -2.3825, 4.12661, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
 texture = ExtResource("3_kd0b7")
 
 [node name="StickerGMTK" type="Sprite3D" parent="BackgroundVinyl"]
-transform = Transform3D(0.13074, -0.151351, 0, 0.151351, 0.13074, 0, 0, 0, 0.2, -1.96196, 1.61294, 0.650911)
+transform = Transform3D(0.141421, -0.141421, 0, 0.141421, 0.141421, 0, 0, 0, 0.2, -1.81256, 1.62315, 0.650907)
 texture = ExtResource("4_suo7h")
 
 [node name="Terrain" type="Node" parent="."]
