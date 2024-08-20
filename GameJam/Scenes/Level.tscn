@@ -121,7 +121,7 @@ collision_layer = 128
 collision_mask = 2
 
 [node name="BackgroundVinyl" type="Sprite3D" parent="."]
-transform = Transform3D(4.69965, -0.786452, 0, 0.786452, 4.69965, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
+transform = Transform3D(4.765, 0, 0, 0, 4.765, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
 texture = ExtResource("3_iytng")
 
 [node name="Terrain" type="Node" parent="."]
