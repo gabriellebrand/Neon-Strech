@@ -8,6 +8,7 @@ const SAVE_DATA = preload("res://Resources/save_data.tres")
 @onready var current_high_score = SAVE_DATA.high_score
 @onready var has_new_high_score = false
 @onready var current_multiplier = 1
+@onready var stop_incrementing_score = false
 
 @onready var starting_bpm = 100
 @onready var current_bpm = starting_bpm
@@ -27,11 +28,14 @@ func _process(delta: float) -> void:
     current_bpm += bpm_acceleration * delta
     
 func start_run():
+    stop_incrementing_score = false
     Engine.time_scale = 1
     current_bpm = starting_bpm
+    current_score = 0
     entry_point.start_run()
     
 func end_run():
+    stop_incrementing_score = true
     Engine.time_scale = 0.5
     entry_point.slow_down_all_tracks()
     await get_tree().create_timer(0.7).timeout
@@ -42,24 +46,18 @@ func end_run():
         new_save_date.high_score = current_high_score
         ResourceSaver.save(new_save_date, "res://Resources/save_data.tres")
     entry_point.end_run()
-    
-func _on_current_run_time_changed(run_time):
-    var new_score = compute_score(run_time)
-    if (new_score == current_score):
-        return
-    
-    current_score = new_score
-    entry_point.update_score_label(current_score)
-    if (current_score > current_high_score):
-        current_high_score = current_score
-        has_new_high_score = true
-        entry_point.flash_new_high_score_label()
 
 func _on_current_streak_changed(streak):
     current_multiplier = 2 ** (streak)
     print(streak, " ", current_multiplier)
     entry_point.update_multiplier_label(current_multiplier)
 
-func compute_score(run_time):
-    var score = int(run_time) * 50 * current_multiplier
-    return score
+func _on_measure_changed(measure):
+    if stop_incrementing_score:
+        return
+    current_score += 50 * current_multiplier
+    entry_point.update_score_label(current_score)
+    if (current_score > current_high_score):
+        current_high_score = current_score
+        has_new_high_score = true
+        entry_point.flash_new_high_score_label()
