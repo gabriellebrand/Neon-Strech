@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const initial_lives = 1
+const initial_lives = 3
 
 # state
 var lives = initial_lives
