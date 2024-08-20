@@ -33,6 +33,7 @@ func start_run():
     
 func end_run():
     Engine.time_scale = 0.5
+    entry_point.slow_down_all_tracks()
     await get_tree().create_timer(0.7).timeout
 
     if (has_new_high_score):

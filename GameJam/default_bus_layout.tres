@@ -2,6 +2,7 @@
 
 [sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_gpugw"]
 resource_name = "PitchShift"
+pitch_scale = 0.01
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_in6m7"]
 resource_name = "LowPassFilter"

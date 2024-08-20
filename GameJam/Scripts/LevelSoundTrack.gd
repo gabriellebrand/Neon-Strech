@@ -5,11 +5,21 @@ extends Node
 @onready var synth_audio_stream_player: AudioStreamPlayer = $SynthAudioStreamPlayer
 @onready var synth_voices_audio_stream_player: AudioStreamPlayer = $SynthVoicesAudioStreamPlayer
 
+const increase_pitch_speed = (0.02 / 4.78)
+var increasing_pitch = true
+
+var last_pitch_speed
+var time_to_end = 0.7
+var desired_end_pitch = 0.2
+
 var play_time = 0
 func _process(delta: float) -> void:
     var effect = AudioServer.get_bus_effect(1, 0)
     play_time += delta
-    effect.pitch_scale = 1 + (0.02 * (play_time / 4.78))
+    if increasing_pitch:
+        effect.pitch_scale = 1 + play_time * increase_pitch_speed
+    else:
+        effect.pitch_scale += delta * last_pitch_speed
 
 
 func _on_conductor_loop_changed(loop_counter) -> void:
@@ -17,8 +27,13 @@ func _on_conductor_loop_changed(loop_counter) -> void:
         drums_audio_stream_player.volume_db = 0
     elif loop_counter == 2:
         bass_audio_stream_player.volume_db = 0
-    elif loop_counter == 4:
+    elif loop_counter == 3:
         synth_audio_stream_player.volume_db = 0        
-    elif loop_counter == 8:
-        print("oito")
+    elif loop_counter == 4:
         synth_voices_audio_stream_player.volume_db = 0
+        
+func slow_down_all_tracks():
+    var effect = AudioServer.get_bus_effect(1, 0)
+    increasing_pitch = false
+    var last_pitch = effect.pitch_scale
+    last_pitch_speed = (desired_end_pitch - last_pitch) / time_to_end
