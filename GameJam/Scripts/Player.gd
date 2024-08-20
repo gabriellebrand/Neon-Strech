@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
-# state
 const initial_lives = 1
+
+# state
 var lives = initial_lives
 var invincible = false
-var move_z = false
+var dead = false
 
 # signals
 signal state_changed(new_value)
@@ -48,7 +49,7 @@ func _process(delta):
     stretch_y(Input.get_axis("stretch_down", "stretch_up"))
     snap_to_ground()
     move_x(Input.get_axis("move_left", "move_right"))
-    if move_z:
+    if dead:
       velocity.z = (GameManager.current_speed)
     move_and_slide()
 
@@ -92,7 +93,7 @@ func hit():
 
     # game over
     if lives <= 0:
-        move_z = true
+        dead = true
         GameManager.end_run()
         return
 
