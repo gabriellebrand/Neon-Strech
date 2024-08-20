@@ -11,7 +11,7 @@ const SAVE_DATA = preload("res://Resources/save_data.tres")
 
 @onready var starting_bpm = 100
 @onready var current_bpm = starting_bpm
-@onready var bpm_acceleration = (60.0/current_bpm) * 8 * 0.5
+@onready var bpm_acceleration = (60.0/current_bpm) * 8 * 0.3
 
 const wall_spawn_distance_to_player = 12
 const beats_to_player =  4

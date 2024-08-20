@@ -24,9 +24,10 @@ func _process(delta):
     background_vinyl.rotate(Vector3(0,0,1), GameManager.current_speed * delta)
 
 func _on_conductor_measure_changed(position: Variant) -> void:
-    if (position % 4 == 1):
-        var wall = wall_scene.instantiate()
-        add_child(wall)
+    pass
+    #if (position % 4 == 1):
+        #var wall = wall_scene.instantiate()
+        #add_child(wall)
 
 func _on_conductor_loop_changed(loop_counter) -> void:
     current_streak += 1

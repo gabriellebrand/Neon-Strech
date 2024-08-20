@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dh0amlcjjdkfe"]
+[gd_scene load_steps=30 format=3 uid="uid://dh0amlcjjdkfe"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_8pt3u"]
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dj75s47ox7kqy" path="res://Assets/Music/synth_synth1.wav" id="8_j1jxp"]
 [ext_resource type="Script" path="res://Scripts/conductor.gd" id="9_5or4g"]
 [ext_resource type="AudioStream" uid="uid://ca286mql845rh" path="res://Assets/Music/vinyl_background.mp3" id="9_048yn"]
+[ext_resource type="AudioStream" uid="uid://pei0karm3tgt" path="res://Assets/Music/synth_voices.wav" id="12_ti8mq"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5f4a3"]
 plane = Plane(1, 0, 0, 0)
@@ -191,6 +192,12 @@ bus = &"Music"
 
 [node name="SynthAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource("8_j1jxp")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+
+[node name="SynthVoicesAudioStreamPlayer" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("12_ti8mq")
 volume_db = -80.0
 autoplay = true
 bus = &"Music"
