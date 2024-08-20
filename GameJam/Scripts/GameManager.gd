@@ -49,7 +49,6 @@ func end_run():
 
 func _on_current_streak_changed(streak):
     current_multiplier = 2 ** (streak)
-    print(streak, " ", current_multiplier)
     entry_point.update_multiplier_label(current_multiplier)
 
 func _on_measure_changed(measure):

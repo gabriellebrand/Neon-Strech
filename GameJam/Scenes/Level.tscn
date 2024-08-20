@@ -163,11 +163,8 @@ environment = SubResource("Environment_ctuod")
 [node name="Sound" type="Node" parent="."]
 script = ExtResource("5_cxqaj")
 
-[node name="Conductor" type="AudioStreamPlayer" parent="Sound"]
+[node name="Conductor" type="Node" parent="Sound"]
 unique_name_in_owner = true
-stream = ExtResource("6_yfn7q")
-volume_db = -80.0
-autoplay = true
 script = ExtResource("9_5or4g")
 
 [node name="StartTimer" type="Timer" parent="Sound/Conductor"]
@@ -206,4 +203,3 @@ bus = &"Music"
 [connection signal="loop_changed" from="Sound/Conductor" to="." method="_on_conductor_loop_changed"]
 [connection signal="loop_changed" from="Sound/Conductor" to="Sound" method="_on_conductor_loop_changed"]
 [connection signal="measure_changed" from="Sound/Conductor" to="." method="_on_conductor_measure_changed"]
-[connection signal="timeout" from="Sound/Conductor/StartTimer" to="Sound/Conductor" method="_on_start_timer_timeout"]
