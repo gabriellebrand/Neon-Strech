@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3jahmithafae"]
 
 [ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_r6b6b"]
-[ext_resource type="Texture2D" uid="uid://3dsxffej8nmp" path="res://Assets/SynthwaveBackground.jpg" id="1_wly85"]
+[ext_resource type="Texture2D" uid="uid://3dsxffej8nmp" path="res://Assets/Images/SynthwaveBackground.jpg" id="1_wly85"]
 [ext_resource type="AudioStream" uid="uid://btvijxkhltdmx" path="res://Assets/Music/radio_button_click.mp3" id="3_ai18n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh7lt"]

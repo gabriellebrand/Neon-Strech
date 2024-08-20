@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8mwe4y3sf70s"
-path.s3tc="res://.godot/imported/vinyl1.png-9221d7ffd6a57fbcf04fb02ea1a9be85.s3tc.ctex"
+uid="uid://dlomi3vbteath"
+path.s3tc="res://.godot/imported/vinyl2.png-3a55ad6694b5f9217c2f7960f1876061.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/vinyl1.png"
-dest_files=["res://.godot/imported/vinyl1.png-9221d7ffd6a57fbcf04fb02ea1a9be85.s3tc.ctex"]
+source_file="res://Assets/Images/vinyl2.png"
+dest_files=["res://.godot/imported/vinyl2.png-3a55ad6694b5f9217c2f7960f1876061.s3tc.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c871nyeposdy6"
-path.s3tc="res://.godot/imported/gmtk24.png-1e9d8b526306e09cdc20900a1b70b773.s3tc.ctex"
+path.s3tc="res://.godot/imported/gmtk24.png-20c543f9eb4257e8902ae3c9a76d973a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/gmtk24.png"
-dest_files=["res://.godot/imported/gmtk24.png-1e9d8b526306e09cdc20900a1b70b773.s3tc.ctex"]
+source_file="res://Assets/Images/gmtk24.png"
+dest_files=["res://.godot/imported/gmtk24.png-20c543f9eb4257e8902ae3c9a76d973a.s3tc.ctex"]
 
 [params]
 
