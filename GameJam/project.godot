@@ -27,6 +27,10 @@ import/blender/enabled=false
 
 EntryPoint=""
 
+[gui]
+
+theme/custom_font="res://Assets/Fonts/arcade_ya/ARCADE_I.TTF"
+
 [input]
 
 stretch_up={
