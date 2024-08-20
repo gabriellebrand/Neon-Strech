@@ -12,7 +12,7 @@ const SAVE_DATA = preload("res://Resources/save_data.tres")
 @onready var current_bpm = 100
 
 const wall_spawn_distance_to_player = 12
-const beats_to_player =  8
+const beats_to_player =  4
 
 @onready var current_speed:
     set(new_speed):

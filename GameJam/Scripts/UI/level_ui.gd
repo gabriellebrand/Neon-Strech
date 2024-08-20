@@ -8,7 +8,7 @@ extends Control
 @onready var multiplier_label: Label = $MultiplierLabel
 
 func update_score_label(score):
-    score_label.text = "Score: %8d" % score
+    score_label.text = "Score: %d" % score
 
 func update_life_icons(lives):
     live_icon_3.visible = lives>=3

@@ -9,3 +9,4 @@ func _ready():
 func _process(delta):
     time += delta
     material.set_shader_parameter("time", time)
+    material.set_shader_parameter("velocity", GameManager.current_speed)

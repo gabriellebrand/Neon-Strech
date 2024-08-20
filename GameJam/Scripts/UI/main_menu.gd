@@ -18,4 +18,4 @@ func _on_play_button_pressed():
         GameManager.start_run()
 
 func update_high_score_label(score):
-    high_score_label.text = "Highest Score: %8d" % score
+    high_score_label.text = "Highest Score: %d" % score
