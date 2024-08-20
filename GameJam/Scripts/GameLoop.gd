@@ -23,6 +23,7 @@ func start_run():
     main_menu.hide()
     game_over_menu.hide()
     level_ui.flash_new_high_score_label(false)
+    level_ui.get_node("NewHighScoreLabel").hide()
     level_ui.show()
     update_score_label(0)
 
@@ -36,7 +37,9 @@ func reset_level():
     level = level_scene.instantiate()
     level.connect("current_run_time_changed", Callable(GameManager, "_on_current_run_time_changed"))
     level.connect("current_streak_changed", Callable(GameManager, "_on_current_streak_changed"))
-    level.get_node("Player").state_changed.connect(player_state_changed)
+    level.get_node("Player").state_changed.connect(player_state_changed)    
+    level.get_node("%Conductor").connect("measure_changed", Callable(GameManager, "_on_measure_changed"))
+    
     add_child(level)
 
 func update_score_label(score):
