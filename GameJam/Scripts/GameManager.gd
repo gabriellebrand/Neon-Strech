@@ -27,11 +27,13 @@ func _process(delta: float) -> void:
     current_bpm += bpm_acceleration * delta
     
 func start_run():
+    Engine.time_scale = 1
     current_bpm = starting_bpm
     entry_point.start_run()
     
 func end_run():
-    #Engine.time_scale = 0.5
+    Engine.time_scale = 0.5
+    await get_tree().create_timer(0.7).timeout
 
     if (has_new_high_score):
         entry_point.update_high_score_label(current_high_score)
