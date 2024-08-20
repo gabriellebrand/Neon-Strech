@@ -9,7 +9,7 @@ var play_time = 0
 func _process(delta: float) -> void:
     var effect = AudioServer.get_bus_effect(1, 0)
     play_time += delta
-    effect.pitch_scale = 1 + (0.025 * (play_time / 4.78))
+    effect.pitch_scale = 1 + (0.02 * (play_time / 4.78))
 
 
 func _on_conductor_loop_changed(loop_counter) -> void:

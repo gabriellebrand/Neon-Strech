@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://dh0amlcjjdkfe"]
+[gd_scene load_steps=31 format=3 uid="uid://dh0amlcjjdkfe"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_8pt3u"]
 [ext_resource type="PackedScene" uid="uid://cn2lk37i3068r" path="res://Scenes/Player.tscn" id="2_7bym5"]
 [ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="3_e7qp6"]
-[ext_resource type="Texture2D" uid="uid://8mwe4y3sf70s" path="res://Assets/vinyl1.png" id="4_apl4r"]
+[ext_resource type="Texture2D" uid="uid://b4sw765umag5r" path="res://Assets/vinyl3.png" id="3_kd0b7"]
+[ext_resource type="Texture2D" uid="uid://c871nyeposdy6" path="res://Assets/gmtk24.png" id="4_suo7h"]
 [ext_resource type="Script" path="res://Scripts/Terrain.gd" id="5_2wycv"]
 [ext_resource type="Script" path="res://Scripts/LevelSoundTrack.gd" id="5_cxqaj"]
 [ext_resource type="AudioStream" uid="uid://bqfmcle8dfcyk" path="res://Assets/Music/synth_drums.wav" id="6_yfn7q"]
@@ -121,8 +122,12 @@ collision_layer = 128
 collision_mask = 2
 
 [node name="BackgroundVinyl" type="Sprite3D" parent="."]
-transform = Transform3D(4.765, 0, 0, 0, 4.765, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
-texture = ExtResource("4_apl4r")
+transform = Transform3D(4.12661, 2.3825, 0, -2.3825, 4.12661, 0, 0, 0, 4.765, 0, 4.875, -38.8475)
+texture = ExtResource("3_kd0b7")
+
+[node name="StickerGMTK" type="Sprite3D" parent="BackgroundVinyl"]
+transform = Transform3D(0.141421, -0.141421, 0, 0.141421, 0.141421, 0, 0, 0, 0.2, -1.81256, 1.62315, 0.650907)
+texture = ExtResource("4_suo7h")
 
 [node name="Terrain" type="Node" parent="."]
 
