@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 # state
-const initial_lives = 3
+const initial_lives = 1
 var lives = initial_lives
 var invincible = false
 

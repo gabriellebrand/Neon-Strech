@@ -27,13 +27,13 @@ alignment = 1
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "GAME OVER !"
+text = "GAME OVER"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
 [node name="Spacer3" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
 [node name="HighScoreLabel" type="Label" parent="VBoxContainer"]
@@ -44,20 +44,21 @@ text = "Highest Score: 500000
 "
 
 [node name="Spacer" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RETRY"
 
 [node name="Container" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="PlayButton" type="Button" parent="VBoxContainer/Container"]
-custom_minimum_size = Vector2(20, 40)
-layout_mode = 2
-text = "     RETRY     "
-
 [node name="ButtonAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_jch0y")
 volume_db = 10.0
 
-[connection signal="pressed" from="VBoxContainer/Container/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
