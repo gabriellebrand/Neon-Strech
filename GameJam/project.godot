@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GameJam"
+config/name="Neon Stretch"
 run/main_scene="res://Scenes/GameLoop.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://Assets/cube-icon.png"
+config/icon="res://Assets/vinyl_with_sticker.png"
 
 [autoload]
 
