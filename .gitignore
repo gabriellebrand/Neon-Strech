@@ -1,1 +1,5 @@
-BrackeysTutorial/
+# Godot 4+ specific ignores
+.godot/
+/android/
+Build/
+*.tmp
