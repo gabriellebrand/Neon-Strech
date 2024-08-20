@@ -3,8 +3,6 @@ shader_type spatial;
 uniform sampler2D noise;
 uniform sampler2D normalmap;
 uniform float amplitude = 0.5;
-uniform float time = 0.0;
-uniform float velocity = 3.0;
 
 uniform vec4 albedo : source_color = vec4(1.0);
 uniform vec4 wire_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
@@ -38,12 +36,6 @@ void vertex() {
     vec2 pos = VERTEX.xz;
     float k = amplitude*height(pos);
     VERTEX.y = k;
-
-    if (mesh_id == 0)
-        VERTEX.z = VERTEX.z + velocity*mod(time+MESH_SIZE/velocity, 2.0*MESH_SIZE/velocity);
-    else
-        VERTEX.z = VERTEX.z + velocity*mod(time, 2.0*MESH_SIZE/velocity);
-
 
     NORMAL = normalize(vec3(k - height(pos + vec2(0.1, 0.0)),
         0.1, k - height(pos + vec2(0.0, 0.8))));

@@ -24,6 +24,8 @@ const beats_to_player =  4
     get:
         return wall_spawn_distance_to_player * (current_bpm/60.0) / beats_to_player
 
+@onready var initial_speed = wall_spawn_distance_to_player * (starting_bpm/60.0) / beats_to_player
+
 func _process(delta: float) -> void:
     current_bpm += bpm_acceleration * delta
     

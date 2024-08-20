@@ -31,6 +31,7 @@ const HIGH_PASS_CUTOFF_CONSTANT = HIGH_PASS_NO_CUTOFF_HZ - (HIGH_PASS_CUTOFF_MUL
 const MUSIC_BUS_ID = 1
 const LOW_PASS_FILTER_ID = 1
 const HIGH_PASS_FILTER_ID = 2
+
 var low_pass_filter = AudioServer.get_bus_effect(MUSIC_BUS_ID, LOW_PASS_FILTER_ID)
 var high_pass_filter = AudioServer.get_bus_effect(MUSIC_BUS_ID, HIGH_PASS_FILTER_ID)
 

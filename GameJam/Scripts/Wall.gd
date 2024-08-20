@@ -22,7 +22,6 @@ const hole_h_min = 0.5
 const hole_h_max = 4.0
 const hole_area = 3.0
 
-
 func _ready():
     # wall spawn at z_initial
     position.z = z_initial
