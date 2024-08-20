@@ -7,11 +7,14 @@ const SAVE_DATA = preload("res://Resources/save_data.tres")
 @onready var current_score = 0
 @onready var current_high_score = SAVE_DATA.high_score
 @onready var has_new_high_score = false
+@onready var current_multiplier = 1
 
-@onready var current_bpm = 100
+@onready var starting_bpm = 100
+@onready var current_bpm = starting_bpm
+@onready var bpm_acceleration = (60.0/current_bpm) * 8 * 0.5
 
 const wall_spawn_distance_to_player = 12
-const beats_to_player =  8
+const beats_to_player =  4
 
 @onready var current_speed:
     set(new_speed):
@@ -20,7 +23,11 @@ const beats_to_player =  8
     get:
         return wall_spawn_distance_to_player * (current_bpm/60.0) / beats_to_player
 
+func _process(delta: float) -> void:
+    current_bpm += bpm_acceleration * delta
+    
 func start_run():
+    current_bpm = starting_bpm
     entry_point.start_run()
     
 func end_run():
@@ -42,7 +49,12 @@ func _on_current_run_time_changed(run_time):
         current_high_score = current_score
         has_new_high_score = true
         entry_point.flash_new_high_score_label()
-    
+
+func _on_current_streak_changed(streak):
+    current_multiplier = 2 ** (streak)
+    print(streak, " ", current_multiplier)
+    entry_point.update_multiplier_label(current_multiplier)
+
 func compute_score(run_time):
-    var score = int(run_time) * 50
+    var score = int(run_time) * 50 * current_multiplier
     return score

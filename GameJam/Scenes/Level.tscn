@@ -30,6 +30,7 @@ render_priority = 0
 shader = ExtResource("3_e7qp6")
 shader_parameter/amplitude = 0.5
 shader_parameter/time = 0.0
+shader_parameter/velocity = 3.0
 shader_parameter/albedo = Color(0.621218, 0.0363531, 0.27693, 1)
 shader_parameter/wire_color = Color(0, 0.72549, 0.831373, 1)
 shader_parameter/wire_width = 1.0
@@ -54,6 +55,7 @@ render_priority = 0
 shader = ExtResource("3_e7qp6")
 shader_parameter/amplitude = 5.0
 shader_parameter/time = 0.0
+shader_parameter/velocity = 3.0
 shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/wire_color = Color(0, 0, 1, 1)
 shader_parameter/wire_width = 1.0
@@ -72,6 +74,7 @@ render_priority = 0
 shader = ExtResource("3_e7qp6")
 shader_parameter/amplitude = 5.0
 shader_parameter/time = 0.0
+shader_parameter/velocity = 3.0
 shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/wire_color = Color(0, 0, 0.870588, 1)
 shader_parameter/wire_width = 1.0
@@ -140,14 +143,14 @@ shape = SubResource("WorldBoundaryShape3D_5f4a3")
 shape = SubResource("WorldBoundaryShape3D_cjq63")
 
 [node name="Terrain" type="MeshInstance3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130.85)
 mesh = SubResource("PlaneMesh_wjfew")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_8k1vl")
 script = ExtResource("5_2wycv")
 
 [node name="Terrain2" type="MeshInstance3D" parent="Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -130.85)
 mesh = SubResource("PlaneMesh_wjfew")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_mwb2x")
