@@ -30,7 +30,7 @@ grow_vertical = 0
 alignment = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(400, 20)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "GAME OVER"
@@ -46,7 +46,7 @@ text = "Highest Score: 500000
 "
 
 [node name="Spacer" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
