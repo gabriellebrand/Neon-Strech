@@ -1,0 +1,19 @@
+Alterar modelo player
+	- Material (shader)
+	- 3D Model (carro, nave, ..)
+
+Day-Night Cycle
+	- Mudanças nas cores do grid, vinil, walls
+	- Downbeat soundtrack
+	- Controller
+
+Post-processing
+	- Efeito tv antiga (shader) -> o que tentamos não deu certo porque não funciona com objetos transparentes
+	- Glitches
+
+Music-Hit Sync
+	- Diminuir o pitch/n de instrumentos ao acertar uma parede
+
+Reduzir Dificuldade
+	- Criar opções? Diminuir tudo? Mudar scaling da velocidade?
+ 
